@@ -1,0 +1,27 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~6.0.0",
+    "@fitbit/sdk-cli": "^1.7.3",
+    "fitbit-sdk-types": "^7.0.5"
+  },
+  "fitbit": {
+    "appUUID": "cbf00623-2f97-4e83-92f6-d94dc8546015",
+    "appType": "app",
+    "appDisplayName": "sensor-stream",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#607d8b",
+    "requestedPermissions": [
+      "access_heart_rate",
+      "access_activity"
+    ],
+    "buildTargets": [
+      "atlas"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "sensor-stream"
+      }
+    },
+    "defaultLanguage": "en-US"
+  }
+}
