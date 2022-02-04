@@ -3,17 +3,17 @@ import { BodyPresenceSensor } from "body-presence";
 import { Gyroscope } from "gyroscope";
 import { HeartRateSensor } from "heart-rate";
 
-import * as messaging from "messaging";
+import { ErrorEvent, peerSocket } from "messaging";
 
 
 const sensors : any[] = [];
 
-const data : any = {accelData : null,bpsData : null, gyroData : null, hrm : null}
-
+const data : any = {acceleration : null, bodyPresence : null, gyro : null, heartRate : null}
+const intervalMS = 100
 if (Accelerometer) {
   const accel = new Accelerometer({ frequency: 1 });
   accel.addEventListener("reading", () => {
-    data.accelData = {
+    data.acceleration = {
       x: accel.x ? accel.x.toFixed(1) : 0,
       y: accel.y ? accel.y.toFixed(1) : 0,
       z: accel.z ? accel.z.toFixed(1) : 0
@@ -24,9 +24,9 @@ if (Accelerometer) {
 }
 
 if (BodyPresenceSensor) {
-  const bps = new BodyPresenceSensor();
+  const bps = new BodyPresenceSensor({ frequency: 1 });
   bps.addEventListener("reading", () => {
-    data.bpsData = {
+    data.bodyPresence = {
       presence: bps.present
     }
   });
@@ -37,7 +37,7 @@ if (BodyPresenceSensor) {
 if (Gyroscope) {
   const gyro = new Gyroscope({ frequency: 1 });
   gyro.addEventListener("reading", () => {
-    data.gyroData = {
+    data.gyro = {
       x: gyro.x ? gyro.x.toFixed(1) : 0,
       y: gyro.y ? gyro.y.toFixed(1) : 0,
       z: gyro.z ? gyro.z.toFixed(1) : 0,
@@ -50,7 +50,7 @@ if (Gyroscope) {
 if (HeartRateSensor) {
   const hrm = new HeartRateSensor({ frequency: 1 });
   hrm.addEventListener("reading", () => {
-    data.hrmData = {
+    data.heartRate = {
       heartRate: hrm.heartRate ? hrm.heartRate : 0
     }
   });
@@ -58,6 +58,12 @@ if (HeartRateSensor) {
   hrm.start();
 }
 
-messaging.peerSocket.addEventListener("open", (evt) => {
-  console.log("Ready to send or receive messages");
-});
+peerSocket.onerror = (err : ErrorEvent) => {
+  // Handle any errors
+  console.log("Connection error: " + err.code + " - " + err.message);
+}
+
+setInterval(() => {
+  if (peerSocket.readyState === peerSocket.OPEN) {
+    peerSocket.send(data);
+  }},intervalMS);
