@@ -10,7 +10,7 @@ See the [Fitbit documenation](https://dev.fitbit.com/getting-started) for more i
 
 ## Typescript
 
-This project is setup using typescript. all .ts files will be compiled using typescript.
+This project is setup using typescript. All .ts files will be compiled using typescript.
 
 ## First time setup
 
