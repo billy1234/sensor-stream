@@ -3,6 +3,9 @@ import { BodyPresenceSensor } from "body-presence";
 import { Gyroscope } from "gyroscope";
 import { HeartRateSensor } from "heart-rate";
 
+import * as messaging from "messaging";
+
+
 const sensors : any[] = [];
 
 const data : any = {accelData : null,bpsData : null, gyroData : null, hrm : null}
@@ -54,3 +57,7 @@ if (HeartRateSensor) {
   sensors.push(hrm);
   hrm.start();
 }
+
+messaging.peerSocket.addEventListener("open", (evt) => {
+  console.log("Ready to send or receive messages");
+});
