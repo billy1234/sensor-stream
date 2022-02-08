@@ -1,0 +1,19 @@
+service: sensor-store-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-southeast-2
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+functions:
+  store:
+    handler: src/handler.store
+    events:
+      - http:
+          method: post
+          path: store

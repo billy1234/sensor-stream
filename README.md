@@ -37,3 +37,7 @@ this will open Fitbit's cli app then once is has launched type:
 Assuming the OS simulator is running this will install then launch the application. If this is the first time running the OS simulator it will requre you to login with a fitbit account for more info see: [Documenation](https://dev.fitbit.com/build/guides/command-line-interface/)
 
 The app can be exited anytime with Control + C (windows)
+
+## Storage API
+
+This project comes with a proof of concept HTTP API that the companion app sends it data to. This can be done with websockets or any other protocol however for an example of how to consume and store the data (in my case the data is stored in a MongoDB database). This service uses the [Serverless](https://www.serverless.com/) framework to create an AWS lambda function. It has a seperate package.json as it dosn't depend on the fitbit sdk nor does the base project use serverless hence a second `npm install` must be run in this directory.
