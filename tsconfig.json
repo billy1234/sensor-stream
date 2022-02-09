@@ -4,10 +4,12 @@
 		"noEmit": true,
 		"checkJs": false,
 		"strict": true
-	},
-	"include": [
-		"**/*.ts",
-		"**/*.js",
-		"./node_modules/fitbit-sdk-types/types/device"
+	},"include": [
+		"./app/*.ts",
+		"./companion/*.ts",
+		"./settings/*.ts",
+		"./shared/*.ts"
+	], "exclude" : [
+		"./database-service"
 	]
 }

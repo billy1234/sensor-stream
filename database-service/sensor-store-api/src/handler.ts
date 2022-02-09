@@ -13,7 +13,7 @@ export const store : Handler = async (event : any, context: Context) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: 'Go Serverless v3.0! Your function executed successfully!',
+        message: 'yay',
         input: event,
       },
       null,

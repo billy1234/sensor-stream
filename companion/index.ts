@@ -1,9 +1,9 @@
 import { ErrorEvent, MessageEvent, peerSocket } from "messaging";
 
-import * as dotenv from "dotenv";
-dotenv.config();
+import enviroment from "./enviroment" 
+//dotenv is not allowed on companion so enviroment variables are provided in a file called enviroment.ts
 
-const storageURL = process.env["STORAGE_URL"]
+const storageURL : string = encodeURI(enviroment.STORAGE_URL)
 
 peerSocket.onerror = (err : ErrorEvent) => {
   // Handle any errors
@@ -12,5 +12,11 @@ peerSocket.onerror = (err : ErrorEvent) => {
 peerSocket.onmessage = (message : MessageEvent) => {
   var data = message.data;
   data.dateTime = new Date().toUTCString();
-  console.log(data);
+  
+  fetch(storageURL, {
+    method:"POST", 
+    headers: {
+    'Content-Type': 'application/json'
+    },
+  }).then( data => { console.log(data.status)}) 
 } 
