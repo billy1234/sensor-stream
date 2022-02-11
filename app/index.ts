@@ -50,9 +50,7 @@ if (Gyroscope) {
 if (HeartRateSensor) {
   const hrm = new HeartRateSensor({ frequency: 1 });
   hrm.addEventListener("reading", () => {
-    data.heartRate = {
-      heartRate: hrm.heartRate ? hrm.heartRate : 0
-    }
+    data.heartRate = hrm.heartRate ? hrm.heartRate : 0
   });
   sensors.push(hrm);
   hrm.start();
