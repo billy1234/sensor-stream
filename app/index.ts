@@ -8,7 +8,14 @@ import { ErrorEvent, peerSocket } from "messaging";
 
 const sensors : any[] = [];
 
-const data : any = {acceleration : null, bodyPresence : null, gyro : null, heartRate : null}
+const data : any = {
+  acceleration : null, 
+  bodyPresence : null, 
+  gyro : null, 
+  heartRate : null, 
+  user: "greg"
+}
+  
 const intervalMS = 100
 if (Accelerometer) {
   const accel = new Accelerometer({ frequency: 1 });

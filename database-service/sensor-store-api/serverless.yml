@@ -6,6 +6,13 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: ap-southeast-2
+  environment:
+    DB_PASSWORD: ${ssm:/aws/reference/secretsmanager/sensor-store/env/DB_PASSWORD}
+    DB_USER: ${ssm:/aws/reference/secretsmanager/sensor-store/env/DB_USER}
+    DB_URL: ${ssm:/aws/reference/secretsmanager/sensor-store/env/DB_URL}
+    DB_NAME: ${ssm:/aws/reference/secretsmanager/sensor-store/env/DB_NAME}
+    COLLECTION_NAME: ${ssm:/aws/reference/secretsmanager/sensor-store/env/COLLECTION_NAME}
+  
 
 plugins:
   - serverless-plugin-typescript
