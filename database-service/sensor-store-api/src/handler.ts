@@ -10,7 +10,7 @@ export const store : APIGatewayProxyHandler = async (event : APIGatewayProxyEven
 
   console.log(data)
   data = data.map(x => {
-    x._id = x["user"] + x["dateTime"]
+    x._id = "[" + x["user"] + "]" + x["dateTime"]
     return x
   });
 

@@ -33,9 +33,7 @@ if (Accelerometer) {
 if (BodyPresenceSensor) {
   const bps = new BodyPresenceSensor({ frequency: 1 });
   bps.addEventListener("reading", () => {
-    data.bodyPresence = {
-      presence: bps.present
-    }
+    data.bodyPresence = bps.present
   });
   sensors.push(bps);
   bps.start();
