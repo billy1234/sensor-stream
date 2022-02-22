@@ -18,7 +18,6 @@ peerSocket.onmessage = (message : MessageEvent) => {
 
 setInterval(
   () => {
-    console.log("im gona send data")
     fetch(storageURL, {
       method:"POST", 
       headers: {
